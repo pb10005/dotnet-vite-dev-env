@@ -1,0 +1,60 @@
+﻿version: '3.4'
+services:
+  redis:
+    image: redis
+    container_name: redis
+    hostname: redis
+    ports:
+      - "6379:6379"
+  postgres:
+    image: postgres
+    container_name: postgres
+    hostname: postgres
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_DB=database
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+  vite-create:
+    container_name: vite-create
+    build:
+      context: .
+      dockerfile: Dockerfile.vite
+      target: base
+    command: yarn create vite ${CLIENT_APP_NAME} --template vue
+    volumes:
+      - ./project:/app
+  dotnet-create:
+    container_name: dotnet-create
+    build:
+      context: .
+      dockerfile: Dockerfile.dotnet
+      target: base
+    command: dotnet new webapi -n ${SERVER_APP_NAME}
+    volumes:
+      - ./project:/app
+  vite-dev:
+    container_name: vite-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.vite
+      target: base
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./project/${CLIENT_APP_NAME}:/app
+  dotnet-dev:
+    container_name: dotnet-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dotnet
+      target: base
+    environment:
+      - "POSTGRES_CONNECTION=Host=postgres;Port=5432;UserId=username;Password=password;Database=database"
+      - "REDIS_CONNECTION=redis:6379"
+    ports:
+      - "7001:7001"
+      - "5001:5001"
+    volumes:
+      - ./project/${SERVER_APP_NAME}:/app
