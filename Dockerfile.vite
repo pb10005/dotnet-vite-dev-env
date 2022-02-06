@@ -1,0 +1,13 @@
+FROM node:buster-slim as base
+ARG APPNAME
+WORKDIR /app
+ENV PATH $HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
+RUN yarn global add vite
+
+FROM base as dev
+EXPOSE 3000
+COPY ./project/${APPNAME}/package*.json ./
+COPY ./project/${APPNAME}/*.lock ./
+RUN yarn
+COPY ./project/${APPNAME} .
+RUN [ "/bin/bash" ]

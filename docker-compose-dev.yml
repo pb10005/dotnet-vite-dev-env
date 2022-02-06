@@ -1,0 +1,27 @@
+version: '3.4'
+services:
+  vite-dev:
+    container_name: vite-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.vite
+      target: dev
+      args:
+        - APPNAME=${CLIENT_APP_NAME}
+    tty: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./project/${CLIENT_APP_NAME}:/app
+  dotnet-dev:
+    container_name: dotnet-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dotnet
+      target: dev
+    tty: true
+    ports:
+      - "7001:7001"
+      - "5001:5001"
+    volumes:
+      - ./project/${SERVER_APP_NAME}:/app

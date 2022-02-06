@@ -1,0 +1,20 @@
+﻿version: '3.4'
+services:
+  vite-create:
+    container_name: vite-create
+    build:
+      context: .
+      dockerfile: Dockerfile.vite
+      target: base
+    command: yarn create vite ${CLIENT_APP_NAME} --template vue
+    volumes:
+      - ./project:/app
+  dotnet-create:
+    container_name: dotnet-create
+    build:
+      context: .
+      dockerfile: Dockerfile.dotnet
+      target: base
+    command: dotnet new webapi -n ${SERVER_APP_NAME}
+    volumes:
+      - ./project:/app
