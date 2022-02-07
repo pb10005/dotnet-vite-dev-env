@@ -1,3 +1,0 @@
-$clientAppName = $Args[0]
-docker compose run --rm --service-ports --volume ./project/${clientAppName}:/app vite-dev yarn
-docker compose run --rm --service-ports --volume ./project/${clientAppName}:/app vite-dev yarn dev --host 0.0.0.0 -d

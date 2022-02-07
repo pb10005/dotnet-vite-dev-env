@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 as base
 ENV PATH="$PATH:/root/.dotnet/tools"
 WORKDIR /app
 RUN dotnet tool install --global dotnet-ef --version 6.0.0
+RUN dotnet tool install --global dotnet-aspnet-codegenerator --version 6.0.1
 RUN dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p developmentonly
 RUN dotnet dev-certs https --trust
 CMD ["/bin/bash"]
