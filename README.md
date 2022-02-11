@@ -11,11 +11,11 @@ On `PowerShell`, run the following commands.
 ```powershell
 .\dev-env-create.ps1
 ```
-by using standard input, specify the name of your apps when asked.
+by using standard input, specify the names of your apps when asked.
 
 - Enable aliases for the commands in order to use the containers from the external shell
 ```powershell
-.\set-aliases.ps1
+.\set-alias.ps1
 ```
 
 ### For MacOS or Linux
@@ -27,7 +27,7 @@ chmod a+x *.sh
 
 - Create projects
 ```shell
-./dev-env-create.sh <client-app-name> <ServerAppName>
+./dev-env-create.sh
 ```
 
 - Start Vite devserver
