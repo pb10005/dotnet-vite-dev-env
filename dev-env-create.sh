@@ -1,17 +1,17 @@
 
 echo "Vite app name:"
-CLIENT_APP_NAME=$1
-echo "dotnet app name"
-SERVER_APP_NAME=$2
+read CLIENT_APP_NAME
+echo "dotnet app name:"
+read SERVER_APP_NAME
 
 docker compose build
 docker compose up -d redis postgres
 
-./set-alias.sh
+. ./set-alias.sh
 
 mkdir project
 cd ./project
-npx degit web2033/vite-vue3-tailwind-starter ${clientAppName}
+npx degit web2033/vite-vue3-tailwind-starter $CLIENT_APP_NAME
 dotnet new webapi -n $SERVER_APP_NAME
 
 cd ./$SERVER_APP_NAME

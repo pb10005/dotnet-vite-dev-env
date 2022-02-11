@@ -1,23 +1,19 @@
 function dn() {
-    docker compose run --rm --service-ports --volume ${pwd}:/app dotnet-dev $1
+    docker compose run --rm -v $(pwd):/app dotnet-dev $@
 }
 
 function vt() {
-    docker compose run --rm --service-ports --volume ${pwd}:/app vite-dev $1
+    docker compose run --rm -v $(pwd):/app vite-dev $@
 }
 
 function dotnet() {
-    docker compose run --rm --service-ports --volume ${pwd}:/app dotnet-dev dotnet $1
-}
-
-function dotnet-aspnet-codegenerator() {
-    docker compose run --rm --volume ${pwd}:/app dotnet-dev dotnet-aspnet-codegenerator $1
+    docker compose run --rm -v $(pwd):/app dotnet-dev dotnet $@
 }
 
 function yarn() {
-    docker compose run --rm --service-ports --volume ${pwd}:/app vite-dev yarn $1
+    docker compose run --rm -v $(pwd):/app vite-dev yarn $@
 }
 
 function npx() {
-    docker compose run --rm --volume ${pwd}:/app vite-dev npx $1
+    docker compose run --rm -v $(pwd):/app vite-dev npx $@
 }
