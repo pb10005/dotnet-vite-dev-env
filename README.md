@@ -9,19 +9,14 @@ cd dotnet-vite-dev-env
 On `PowerShell`, run the following commands.
 - Create projects
 ```powershell
-.\dev-env-create.ps1 <client-app-name> <ServerAppName>
+.\dev-env-create.ps1
 ```
+by using standard input, specify the name of your apps when asked.
 
-- Start Vite devserver
+- Enable aliases for the commands in order to use the containers from the external shell
 ```powershell
-.\vite-dev.ps1 <cient-app-name>
+.\set-aliases.ps1
 ```
-
-- Start dotnet app
-```powershell
-.\dotnet-dev.ps1 <ServerAppName>
-```
-
 
 ### For MacOS or Linux
 On `Termial`, run the following commands.
