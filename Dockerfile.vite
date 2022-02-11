@@ -1,6 +1,9 @@
 FROM node:buster-slim as base
 WORKDIR /app
 ENV PATH $HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
-RUN yarn global add vite
+RUN apt update && \
+    apt install -y git xdg-utils && \
+    npm install -g degit && \
+    yarn global add vite
 EXPOSE 3000
 RUN ["/bin/bash"]
