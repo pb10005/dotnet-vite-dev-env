@@ -30,12 +30,28 @@ chmod a+x *.sh
 ./dev-env-create.sh
 ```
 
-- Start Vite devserver
+- Enable aliases for the commands in order to use the containers from the external shell
 ```shell
-./vite-dev.sh <cient-app-name>
+./set-alias.sh
 ```
 
-- Start dotnet app
+### Available aliases
+Note: Change directory to your working directory when you use following aliases.
+
+#### vt
+run any commands on `vite-dev` container
+
+Example
 ```shell
-./dotnet-dev.sh <ServerAppName>
+vt bash
 ```
+
+#### dn
+run any commands on `dotnet-dev` container
+```shell
+dn bash
+```
+
+#### dotnet
+#### yarn
+#### npx
